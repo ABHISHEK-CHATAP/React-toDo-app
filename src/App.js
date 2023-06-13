@@ -9,7 +9,6 @@ function App() {
 
   const [todos, setTodos] = useState([]);
  
-
 /* --------  ADD_TODO TODO  ----------- */
 
   const AddTodo = (input) => {
@@ -26,20 +25,24 @@ function App() {
   }
   // console.log(todos);
 
-
  /* --------  REMOVE TODO  ----------- */
 
   const removetodo = (val) => {
     setTodos(todos.filter((x) => x !== val))
   }
-
-
   return (
     <>
+    <div className='main-heading'>
+      <h1 className='tc'>All PRACTICE TASK'S HERE</h1>
+    </div>
+   
+    <div className='To_DO_DIV'>
+    <h1 className='num-one'> 1st : -</h1>
+   
       <div className='app'>
         <div className='container gradient-border'>
           <h3 className='heading'>- :  TO DO List  : -</h3>
-
+          <br />
           <div>
             <input className='input' value={input} onChange={(e) => setInput(e.target.value)} type='text' placeholder='Write a Todo ..' />
            <button className='glow-on-hover' onClick={() => AddTodo(input)}>ADD</button>
@@ -62,6 +65,7 @@ function App() {
       </div>
     
       <br /><br /><br />
+      </div>
       
     </>
   );

@@ -1,4 +1,22 @@
-body{
+*{
+  margin: 0;
+}
+.main-heading{
+  background-color: rgb(121, 117, 121);
+  padding: 0.5em;
+ 
+}
+.tc{
+  color:rgb(255, 255, 20);
+
+  display: flex;
+  justify-content: center;
+}
+.num-one{
+  color:rgb(255, 255, 20);
+  margin-left: 3rem;
+}
+.To_DO_DIV{
   background: rgb(0,0,0);
   background: linear-gradient(90deg, rgba(0,0,0,0.6995259831460674) 0%, rgba(0,0,0,1) 40%, rgba(0,0,0,1) 65%, rgba(0,0,0,0.7416608146067416) 100%);
 }
