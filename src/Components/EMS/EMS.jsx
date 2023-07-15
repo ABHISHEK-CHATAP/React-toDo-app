@@ -20,19 +20,19 @@ const EMS = () => {
     const [selectedEmployee, setSelectedEmployee] = useState(false);
 
     const handleEdit = (idx) => {
-console.log(idx);
-setIsEdditing(true)
+        console.log(idx);
+        setIsEdditing(true)
     }
 
     const handleDelete = (idx) => {
-        setEmployee(employee.filter((x,id)=> id !== idx))
+        setEmployee(employee.filter((x, id) => id !== idx))
     }
 
     return (
         <>
             <div className='EMS'>
                 <br /><br></br>
-                <h1 className='num-one'> 3rd : -   EMPLOYEE MANAGEMENT SYSTEM</h1>
+                <h1 className='num-one'> 4th : -   EMPLOYEE MANAGEMENT SYSTEM</h1>
                 <br />
 
                 <div className='containerr'>
@@ -67,7 +67,7 @@ setIsEdditing(true)
                             setIsEdditing={setIsEdditing} />
                     )}
                 </div>
-
+                <br />    <br />
             </div>
         </>
     )

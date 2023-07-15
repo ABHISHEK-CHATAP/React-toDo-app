@@ -1,0 +1,39 @@
+.local-todo{
+    background-color: teal;
+   
+    width: 100%;
+}
+
+.input-add{
+    left: 25rem;  position: relative;
+}
+.btnn{
+    padding: 10px;
+    border-radius: 50%;
+}
+.click{
+    position: relative;
+    left: 5rem;
+    background: transparent;
+    color: aliceblue;
+    border: none;
+    outline: none;
+}
+#listt{
+  padding: 10px;
+  padding-right: 85px;
+  background-color:rgb(54, 54, 238);
+  color: aliceblue;
+
+ position: relative;
+  left: 25rem;
+}
+.list-data{
+    margin-bottom: 1.6rem;
+}
+.clear-button{
+    position: relative;
+    left: 29rem;
+    padding: 10px;
+    margin-top: 10px;
+}

@@ -13,14 +13,29 @@ const handleChange=(e)=>{
 const handleSubmit=(e)=>{
   e.preventDefault();
   // console.log(inputs)
-  setEmployee([...employee,inputs])
-  setIsAdding(false)
+  // setEmployee([...employee,inputs])
+  // setIsAdding(false)
 
+
+  // id ki value increment nhi ho rahi thi isliye above code is not applicable
+
+  // const id = employee.length + 1;
+  const newEmployee = {
+    id:employee.length + 1,
+    FirstName:inputs.FirstName,
+    LastName:inputs.LastName,
+    email:inputs.email,
+    salary:inputs.salary,
+    date:inputs.date
+    }
+  setEmployee([...employee,newEmployee])
+  setIsAdding(false)
 }
 
   return (
     <>
    <div className='Add-div'>
+   <h3>ADD DATA</h3>
       <form onSubmit={handleSubmit} className='form-control'>
          <label>
           FirstName : 
@@ -42,7 +57,8 @@ const handleSubmit=(e)=>{
           Date : 
           <input name='date' type='date' value={date} onChange={handleChange}required  />
          </label>
-         <button  type='submit'>ADD EMPLOYEE</button>
+         <button className='btn' type='submit'>ADD EMPLOYEE</button>
+         <button className='btn' type='button' onClick={()=> setIsAdding(false)}>Cancel</button>
       </form>
    </div>
  <br/><br/>

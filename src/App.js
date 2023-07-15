@@ -32,12 +32,9 @@ function App() {
   }
   return (
     <>
-    <div className='main-heading'>
-      <h1 className='tc'>All PRACTICE TASK'S HERE</h1>
-    </div>
-   
+ 
     <div className='To_DO_DIV'>
-    <h1 className='num-one'> 1st : -</h1>
+    <h1 className='num-one'> 2nd : -</h1>
    
       <div className='app'>
         <div className='container gradient-border'>

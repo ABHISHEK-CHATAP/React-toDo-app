@@ -64,7 +64,7 @@ const Crud = () => {
             <div className='crud'>
 
                 <br />
-                <h1 className='num-one'> 2nd : -</h1>
+                <h1 className='num-one'> 3rd : -</h1>
                 <br />  
                 <div className='box'>
                     <br />
