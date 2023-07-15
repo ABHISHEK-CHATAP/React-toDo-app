@@ -13,7 +13,7 @@
 }
 .click{
     position: relative;
-    left: 5rem;
+    left: 7.3rem;
     background: transparent;
     color: aliceblue;
     border: none;
@@ -21,7 +21,7 @@
 }
 #listt{
   padding: 10px;
-  padding-right: 85px;
+  padding-right: 130px;
   background-color:rgb(54, 54, 238);
   color: aliceblue;
 

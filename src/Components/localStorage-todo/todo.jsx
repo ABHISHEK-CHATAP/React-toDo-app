@@ -1,36 +1,77 @@
 import React, { useEffect, useRef, useState } from 'react'
 import "./todo.css"
 
-const Todo = () => {
 
+const getLocalData = () => {
+    const list = localStorage.getItem("To-Do-list");
+
+    if (list) {
+        return JSON.parse(list);
+    } else {
+        return [];
+    }
+};
+
+
+
+const Todo = () => {
     const [input, setInput] = useState('')
-    const [tableData, setTableData] = useState([])
+    const [tableData, setTableData] = useState(getLocalData());
+    const [editIndex, setEditIndex] = useState("")
+    const [toggleButton, settoggleButton] = useState(false);
 
     const AddTodo = (input) => {
         if (!input) {
             alert("write something..")
-        } else {
+        }
+        else if (input && toggleButton) {
+           Object.assign(tableData[editIndex],input)
+            setInput("")
+            settoggleButton(false);
+        }
+        else {
             setTableData([...tableData, input])
             setInput("")
         }
     }
+
+
+
     const Delete = (id) => {
         setTableData(tableData.filter((x, idx) => idx !== id))
     }
     const Edit = (id) => {
-        const temp = tableData[id]
-        setInput([temp])
+        //  Another method for finding edit id
+        const item_todo_edited = tableData.find((cueEle, idx) => {
+            return idx === id;
+        })
+        setInput(item_todo_edited)
+        console.log(item_todo_edited);
+        // -------------------------------------------------------------
+        // const temp = tableData[id];
+        // setInput([temp]);
+
+        settoggleButton(true);
+        setEditIndex(id);
     }
 
     const inputRef = useRef()
 
+
+    // Adding Local-Storage
     useEffect(() => {
-        inputRef.current.focus();
-    }, [])
+        // inputRef.current.focus();
+        localStorage.setItem("To-Do-list", JSON.stringify(tableData))
+
+    }, [tableData])
+    // jb bhi 'tableData' ki value change hogi tohi useEffect dobara chalega
+
+
+
     return (
         <>
             <div className='main-heading'>
-                <h1 className='tc'>All PRACTICE TASK'S HERE</h1>
+                <h1 className='tc'>🎉  All PRACTICE TASK'S HERE  🎇</h1>
             </div>
 
             <div className='local-todo'>
@@ -41,17 +82,19 @@ const Todo = () => {
                 <div >
                     <br />
                     <span className='input-add'>
-                        <input className='input' ref={inputRef} placeholder='✍ Enter Here..' value={input} onChange={(e) => setInput(e.target.value)} />
-                        <button className='btn btnn' onClick={() => AddTodo(input)}>➕</button>
+                        <input className='input' name='input' ref={inputRef} placeholder='✍ Enter Here..' value={input} onChange={(e) => setInput(e.target.value)} />
+                        <button className='btn btnn' onClick={() => AddTodo(input)}>{toggleButton ? "✍" : "➕"}</button>
                     </span>
                 </div>
                 <br />
                 {
                     tableData.map((ele, id) => {
                         return (
-                            <div className='list-data'>
-                                <span id='listt'>{ele} <button className='click' onClick={() => Edit(id)}>📝</button>
-                                    <button className='click' onClick={() => Delete(id)}>✖</button></span>
+                            <div className='list-data' key={id}>
+                                <span id='listt'>{ele}
+                                    <button className='click' onClick={() => Edit(id)}>📝</button>
+                                    <button className='click' onClick={() => Delete(id)}>✖</button>
+                                </span>
                             </div>
                         )
                     })
