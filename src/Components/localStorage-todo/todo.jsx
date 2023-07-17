@@ -25,8 +25,16 @@ const Todo = () => {
             alert("write something..")
         }
         else if (input && toggleButton) {
-           Object.assign(tableData[editIndex],input)
-            setInput("")
+            //    Object.assign(tableData[editIndex],input);
+
+            setTableData( tableData.map((cur, index) => {
+                    if (index === editIndex) {
+                        return ([input])
+                    }
+                    return cur
+                })
+            );
+            setInput("");
             settoggleButton(false);
         }
         else {
@@ -40,13 +48,15 @@ const Todo = () => {
     const Delete = (id) => {
         setTableData(tableData.filter((x, idx) => idx !== id))
     }
+
+
     const Edit = (id) => {
         //  Another method for finding edit id
         const item_todo_edited = tableData.find((cueEle, idx) => {
             return idx === id;
         })
         setInput(item_todo_edited)
-        console.log(item_todo_edited);
+        // console.log(item_todo_edited);
         // -------------------------------------------------------------
         // const temp = tableData[id];
         // setInput([temp]);
@@ -55,14 +65,13 @@ const Todo = () => {
         setEditIndex(id);
     }
 
-    const inputRef = useRef()
-
-
+   
     // Adding Local-Storage
+    const inputRef = useRef()
     useEffect(() => {
-        // inputRef.current.focus();
+        inputRef.current.focus();
+        
         localStorage.setItem("To-Do-list", JSON.stringify(tableData))
-
     }, [tableData])
     // jb bhi 'tableData' ki value change hogi tohi useEffect dobara chalega
 
@@ -82,7 +91,7 @@ const Todo = () => {
                 <div >
                     <br />
                     <span className='input-add'>
-                        <input className='input' name='input' ref={inputRef} placeholder='✍ Enter Here..' value={input} onChange={(e) => setInput(e.target.value)} />
+                        <input className='input' name='input' value={input} ref={inputRef} placeholder='✍ Enter Here..' onChange={(e) => setInput(e.target.value)} />
                         <button className='btn btnn' onClick={() => AddTodo(input)}>{toggleButton ? "✍" : "➕"}</button>
                     </span>
                 </div>
@@ -91,17 +100,18 @@ const Todo = () => {
                     tableData.map((ele, id) => {
                         return (
                             <div className='list-data' key={id}>
-                                <span id='listt'>{ele}
-                                    <button className='click' onClick={() => Edit(id)}>📝</button>
-                                    <button className='click' onClick={() => Delete(id)}>✖</button>
+                                <span id='listt'>
+                                    {ele}
+                                    <span>
+                                        <button className='click' onClick={() => Edit(id)}>📝</button>
+                                        <button className='click' onClick={() => Delete(id)}>✖</button>
+                                    </span>
                                 </span>
                             </div>
                         )
                     })
                 }
 
-
-                <br />
                 <hr />
                 <button className='clear-button' onClick={() => setTableData([])}><b>Clear All</b></button>
 
